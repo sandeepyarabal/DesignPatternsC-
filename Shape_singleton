@@ -1,0 +1,102 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <vector> 
+#include <map> 
+//#include "test.h"
+using namespace std;
+
+class shape
+{
+    public:
+    static shape* make_shape(int choice);
+    virtual void draw(void )= 0;
+    
+    protected:
+    shape()
+    {
+        
+    };
+    
+    private:
+    static  shape* shape_instance; 
+};
+
+
+
+class triangle : public shape
+{
+    private:
+    
+
+    public:
+    void draw( void )
+    {
+        cout<<"Hello triangle";
+    }
+  
+};
+
+class square : public shape
+{
+    private:
+    
+
+    public:
+    void draw( void )
+    {
+        cout<<"Hello square";
+    }
+  
+};
+
+shape* shape::shape_instance = 0;
+
+shape* shape::make_shape(int choice)
+{
+ if (shape_instance==0)
+ {
+  if (choice == 1)
+  {
+       cout<<"ch 1";
+    shape_instance = new triangle ;  
+    return shape_instance;
+    
+  }
+  else if (choice == 2)
+  {
+        cout<<"ch 2";
+    shape_instance = new square ;  
+    return shape_instance;
+  }
+ }
+ cout<<"ch 0";
+}
+
+
+int main()
+{
+    
+    
+    shape * tr = new triangle;
+    tr->draw();
+    square * sq = new square;
+    sq->draw();
+    cout<<"Hello World";
+    
+    shape * trr =  shape::make_shape(1);
+    shape * trrr =  shape::make_shape(2);
+    trr->draw();
+    trrr->draw();
+    return 0;
+}
+
+
+
+
